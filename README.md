@@ -1,7 +1,8 @@
 # Introduction to BioSimSpace
 
 ## Aimed at: 
-Anyone interested in learning how to use the new CCP-BioSim BioSimSpace Python environment for easy setup, running, management and analysis of biomolecular simulations.
+Anyone interested in learning how to use the new CCP-BioSim 
+[BioSimSpace](https://biosimspace.org) Python environment for easy setup, running, management and analysis of biomolecular simulations.
 
 ## Requirements: 
 Knowledge of Python, e.g. as gained from the 
