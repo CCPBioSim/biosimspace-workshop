@@ -34,4 +34,4 @@ notebooks there.
 
 ### [03_interactive_md.ipynb](html/03_interactive_md.html) ([answers](html/answers/equilibration.html))
 
-[download](03_interactive_md.ipynb) | [answers](html/answers/equilibration.html)
+[download](03_interactive_md.ipynb) | [answers](nodes/equilibration.ipynb)
