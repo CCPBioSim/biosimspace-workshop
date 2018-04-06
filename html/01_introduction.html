@@ -11797,7 +11797,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <li>Publish workflow components online and search our database for others that may be of use to you.</li>
 <li>Be able to take advantage of new software packages and hardware resources as and when they become available.</li>
 </ul>
-<h2 id="Running-a-node-from-the-command-line">Running a node from the command-line<a class="anchor-link" href="#Running-a-node-from-the-command-line">&#182;</a></h2><p>The typical way of interacting with BioSimSpace is by running a workflow component, or <em>node</em>, from the command-line. A node is just a regular python script that is run using the <a href="https://github.com/michellab/Sire">Sire</a> python interpreter, <code>sire_python</code>, which has access to all of the libraries and modules that are required. A node can be as complex or as simple as you like, but typically it should execute a single task that has a clear input and output. An example could be the energy minimisation of a molecular configuration. We've provided a node for you in the <code>nodes</code> directory called <code>minimisation.py</code>.</p>
+<h2 id="Running-a-node-from-the-command-line">Running a node from the command-line<a class="anchor-link" href="#Running-a-node-from-the-command-line">&#182;</a></h2><p>The typical way of interacting with BioSimSpace is by running a workflow component, or <em>node</em>, from the command-line. A node is just a regular python script that is run using the <code>python</code> interpreter. It can be as complex or as simple as you like, but typically it should execute a single task that has a clear input and output. An example could be the energy minimisation of a molecular configuration. We've provided a node for you in the <code>nodes</code> directory called <code>minimisation.py</code>.</p>
 <p>From the command-line, we can query the node to see what it does and get information about the inputs:</p>
 
 </div>
@@ -11808,7 +11808,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>sire_python nodes/minimisation.py --help
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python nodes/minimisation.py --help
 </pre></div>
 
 </div>
@@ -11831,7 +11831,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>sire_python nodes/minimisation.py
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python nodes/minimisation.py
 </pre></div>
 
 </div>
@@ -11867,9 +11867,9 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The files define a solvated alanine dipeptide system in <a href="http://ambermd.org">AMBER</a> format.</p>
 <p>Let's now run the minimisation node using these files as input. In the interests of time, let's also reduce the number of steps to 1000. The files can be passed to the script in various ways. All of the following are allowed:</p>
-<div class="highlight"><pre><span></span>!sire_python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files<span class="o">=</span><span class="s2">&quot;input/ala.crd, input/ala.top&quot;</span>
-!sire_python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/ala.crd input/ala.top
-!sire_python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/*
+<div class="highlight"><pre><span></span>!python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files<span class="o">=</span><span class="s2">&quot;input/ala.crd, input/ala.top&quot;</span>
+!python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/ala.crd input/ala.top
+!python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/*
 </pre></div>
 
 </div>
@@ -11880,7 +11880,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>sire_python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/*
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python nodes/minimisation.py --steps<span class="o">=</span><span class="m">1000</span> --files input/*
 </pre></div>
 
 </div>
