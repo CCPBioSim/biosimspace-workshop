@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>02_writing_nodes</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>minimisation</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11777,9 +11777,261 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Author: Lester Hedges<br>
 Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
-<h1 id="Writing-a-node">Writing a node<a class="anchor-link" href="#Writing-a-node">&#182;</a></h1><p>In the previous notebook you learned about the concept of <a href="https://www.biosimspace.org">BioSimSpace</a> nodes and learned how to run them from the command-line. In this lesson we'll take a detailed look at the same minimisation node in order to see how it was written.</p>
-<p>As you have already seen, nodes are simply python scripts. While it is possible to write a script directly, we suggest that the best way of writing a node is inside of a <a href="http://jupyter.org">Jupyter</a> notebook. The interactive notebook environment provides a fantastic way of prototyping and documenting your node and will allow a user to interact with it directly on a remote cloud server, such as <a href="https://notebook.biosimspace.org">notebook.biosimspace.org</a>. The notebook can provide a complete record of your work, inlcuding documentation, visualisation, and graphs. When you are happy with the node, you can download it as a regular python script (by clicking on <code>File/Download As/Python</code>) and run it directly from the command-line. Any interactive BioSimSpace elements, such as molecular visualisations, will simply be ignored when run this way.</p>
-<p>Let's now take a look at the accompanying notebook for the minimisation node that you ran in the previous lesson, <a href="minimisation.html">minimisation.ipynb</a> (click on the link to open the notebook). Work through the notebook cell-by-cell to learn how the node was written.</p>
+<h1 id="Minimisation">Minimisation<a class="anchor-link" href="#Minimisation">&#182;</a></h1><p>In this notebook you'll learn how to use BioSimSpace to write a robust and interoperable workflow node to perform energy minimisation on a molecular system.</p>
+<p>First we'll need to import BioSimSpace:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">BioSimSpace</span> <span class="k">as</span> <span class="nn">BSS</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We begin by creating a <code>Node</code> object. This is the core of our molecular workflow component. It defines what it does, what input is needed, and the output that is produced.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">Gateway</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s2">&quot;A node to perform energy minimisation and save the minimised molecular configuration to file.&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll now set the author and license:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">addAuthor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Lester Hedges&quot;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;lester.hedges@bristol.ac.uk&quot;</span><span class="p">,</span> <span class="n">affiliation</span><span class="o">=</span><span class="s2">&quot;University of Bristol&quot;</span><span class="p">)</span>
+<span class="n">node</span><span class="o">.</span><span class="n">setLicense</span><span class="p">(</span><span class="s2">&quot;GPLv3&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nodes require inputs. To specify inputs we use the <code>Gateway</code> module, which is used as a bridge between BioSimSpace and the outside world. This will allow us to document the inputs, define their type, and specify any constraints on their allowed values. Here we will need a set of files that define the molecular system, and an integer that indicates the number of minimisation steps to perform.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">addInput</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="n">BSS</span><span class="o">.</span><span class="n">Gateway</span><span class="o">.</span><span class="n">FileSet</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;a set of molecular input files&quot;</span><span class="p">))</span>
+<span class="n">node</span><span class="o">.</span><span class="n">addInput</span><span class="p">(</span><span class="s2">&quot;steps&quot;</span><span class="p">,</span> <span class="n">BSS</span><span class="o">.</span><span class="n">Gateway</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;the number of minimisation steps&quot;</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10000</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the input requirement <code>steps</code> has a default value, so it is optional.</p>
+<p>We now need to define the output of the node. In this case we will return a set of files representing the minimised molecular system.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">addOutput</span><span class="p">(</span><span class="s2">&quot;minimised&quot;</span><span class="p">,</span> <span class="n">BSS</span><span class="o">.</span><span class="n">Gateway</span><span class="o">.</span><span class="n">FileSet</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;the minimised molecular system&quot;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When working interactively within a Jupyter notebook we need a way to allow users to set the input requirements. The <code>node.showControls</code> method will display a graphical user interface (GUI), from which inputs can be set.</p>
+<p>Note that the GUI requires active user input. All input requirements that don't have a default value <em>must</em> be set before the node can proceed. If you try to query the node for one of the user values then an error will be raised. For bounded integer inputs you can use a slider to set the value, or type in the input box and press enter.</p>
+<p>When working interactively you will typically be running on a remote server where you won't have access to the local filesystem. In this case you'll need to upload files for any of the <code>File</code> or <code>FileSet</code> input requirements. The GUI below will provide buttons that allow you to browse your own filesystem and select files. Since Jupyter has a limit of 5MB for file transfers, we provide support for compressed formats, such as <code>.zip</code> or <code>.tar.gz</code>. (A single archive can contain a set of files, allowing you to set a single value for a <code>FileSet</code> requirement.) For simplicity, the files used in the introductory notebook are available to download from the links below. These can then be re-uploaded using the GUI.</p>
+<p>AMBER files: <a href="../input/ala.crd">ala.crd</a>, <a href="../input/ala.top">ala.top</a></p>
+<p>When uploading files the name of the current file will replace the <code>Browse</code> button. If you need to change the file, simply click on the button again and choose a new file. For <code>FileSet</code> requirements, a new <code>Browse</code> button will appear whenever an additional file is uploaded.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">showControls</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once all requirements are set then we can acces the values using the <code>node.getInput</code> method. The first time this is called the <code>node</code> will automatically validate all of the input and report the user if any errors were found.</p>
+<p>We'll now create a molecular system using the input files uploaded by the user. Note that we don't specify the format of the files, since this is automatically determined by BioSimSpace. (BioSimSpace has support for a wide range of formats and can convert between certain formats too.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">system</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">getInput</span><span class="p">(</span><span class="s2">&quot;files&quot;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to run a minimisation we need to define a protocol. This can be done using the <code>BioSimSpace.Protocol</code> module. Here we will create a "best practice" minimisation protocol, overriding the number of steps with the input from the user.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">protocol</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">Protocol</span><span class="o">.</span><span class="n">Minimisation</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">getInput</span><span class="p">(</span><span class="s2">&quot;steps&quot;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have everything that is required to run a minimisation. To do so, we use <code>BioSimSpace.MD</code> to find an appropriate molecular dynamics package on our current environment. What package is found will depend upon both the system and protocol, as well as the hardware that is available to the user.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">MD</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When the process has finished running we can get the minimised molecular configuration. We will save this to file using the same format as the original system, and set the output requirement to the list of file names that were written.</p>
+<p>Note that we pass <code>block=True</code> to <code>getSystem</code>. Since we're working interactively the process is running in the background and <code>getSystem</code> will grab and return the <em>latest</em> molecular configuration. By passing <code>block=True</code> we wait for the process to finish before getting the <em>final</em> configuration and writing it to file. (You will see that an asterisk appeak next to the cell until the process completes.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">setOutput</span><span class="p">(</span><span class="s2">&quot;minimised&quot;</span><span class="p">,</span> <span class="n">BSS</span><span class="o">.</span><span class="n">saveMolecules</span><span class="p">(</span><span class="s2">&quot;minimised&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">getSystem</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">system</span><span class="o">.</span><span class="n">fileFormat</span><span class="p">()))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, we validate that the node completed succesfully. This will check that all output requirements are satisfied and that no errors were raised by the user. Any file outputs will be available for the user to download as a compressed archive.</p>
+<p>Note that the validation will fail until the cell above finishes running.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once we are satisfied with our node we can choosed to download it as a regular Python script that can be run from the command-line.</p>
+<p>Click on: <code>File/Download As/Python</code></p>
 
 </div>
 </div>
