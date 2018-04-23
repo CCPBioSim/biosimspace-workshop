@@ -11808,7 +11808,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">system</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">([</span><span class="s2">&quot;input/ala.crd&quot;</span><span class="p">,</span> <span class="s2">&quot;input/ala.top&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">system</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">([</span><span class="s2">&quot;input/ala.crd&quot;</span><span class="p">,</span> <span class="s2">&quot;input/ala.top&quot;</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12612,7 +12612,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write the final configuration of the equilibration to file.</span>
-<span class="n">BSS</span><span class="o">.</span><span class="n">saveMolecules</span><span class="p">(</span><span class="s2">&quot;equilibrated&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">getSystem</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">system</span><span class="o">.</span><span class="n">fileFormat</span><span class="p">())</span>
+<span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">saveMolecules</span><span class="p">(</span><span class="s2">&quot;equilibrated&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">getSystem</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">system</span><span class="o">.</span><span class="n">fileFormat</span><span class="p">())</span>
 
 <span class="c1"># Get the RMSD and write it to file. There is no need to block here since we know the process has already finished.</span>
 <span class="n">rmsd</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">getTrajectory</span><span class="p">()</span><span class="o">.</span><span class="n">RMSD</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">system</span><span class="p">[</span><span class="n">BSS</span><span class="o">.</span><span class="n">MolWithResName</span><span class="p">(</span><span class="s2">&quot;ALA&quot;</span><span class="p">)])</span>
@@ -12648,7 +12648,7 @@ div#notebook {
 <li>The RMSD, saved as a text file.</li>
 </ul>
 <p>When you are happy with your node, save it as a python script and verify that it works from the command-line.</p>
-<p>If you get stuck, a solution can be found <a href="answers/equilibration.html">here</a>.</p>
+<p>If you get stuck, a solution can be found <a href="nodes/equilibration.ipynb">here</a>.</p>
 
 </div>
 </div>
