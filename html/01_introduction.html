@@ -11821,6 +11821,28 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>From the output we can see that there is an optional <code>steps</code> argument that sets the number of minimisation steps. If this argument is ommited then a default of 10000 steps is used. There is also one required argument,<code>files</code>, that specifies the set of input files that define the molecular configuration. The square brackets and ellipsis indicate that this argument can take multiple values, i.e. one or more files. Since the argument is required there is no default value. Note that the documentation doesn't specify the format of the input files.</p>
+<p>To see what the output of a node is, run:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python nodes/minimisation.py --output
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Try running the node without any arguments and seeing what the output is:</p>
 
 </div>
