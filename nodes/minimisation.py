@@ -59,7 +59,7 @@ node.addOutput("minimised", BSS.Gateway.FileSet(help="The minimised molecular sy
 node.showControls()
 
 
-# Once all requirements are set then we can acces the values using the `node.getInput` method. The first time this is called the `node` will automatically validate all of the input and report the user if any errors were found.
+# Once all requirements are set then we can acces the values using the `node.getInput` method. The first time this is called the `node` will automatically validate all of the input and report to the user if any errors were found.
 # 
 # We'll now create a molecular system using the input files uploaded by the user. Note that we don't specify the format of the files, since this is automatically determine by BioSimSpace.
 
