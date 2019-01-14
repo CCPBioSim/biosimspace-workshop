@@ -35,7 +35,7 @@ node.setLicense("GPLv3")
 # In[ ]:
 
 
-node.addInput("files", BSS.Gateway.FileSet(help="A set of wolecular input files."))
+node.addInput("files", BSS.Gateway.FileSet(help="A set of molecular input files."))
 node.addInput("steps", BSS.Gateway.Integer(help="The number of minimisation steps.", minimum=0, maximum=1000000, default=10000))
 
 
