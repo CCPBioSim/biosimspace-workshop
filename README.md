@@ -12,9 +12,9 @@ Knowledge of Python, e.g. as gained from the
 BioSimSpace is the new flagship software being produced in partnership with CCP-BioSim/HEC-BioSim. The software provides an easy-to-use Python environment for manipulating biomolecules, running simulations, and analysing / visualising outputs. BioSimSpace hides the details of using individual simulation and analysis packages behind a common, simple Python interface. This enables you to setup, run and analyse simulations using, e.g. Amber, NAMD or Gromacs, all from the same Python script or Jupyter Python interface.
 
 ## Demonstration:
-We will start with a set of demonstrations of what you can do with BioSimSpace. These are a set of Jupyter notebooks. These are available on the 
-<a href="https://ccpbiosim.github.io/workshop/events/leeds2019/server.html" target="_blank">workshop jupyter server</a>
-and can be downloaded from the <a href="https://github.com/ccpbiosim/biosimspace_workshop" target="_blank">GitHub repository</a>.
+We will start with a set of demonstrations of what you can do with BioSimSpace. These are a set of Jupyter notebooks. These are available on the
+<a href="https://notebook.biosimspace.org" target="_blank">workshop jupyter server</a>
+and can be downloaded from the <a href="https://github.com/michellabl/BioSimSpace/demo" target="_blank">GitHub repository</a>.
 
 Once you have started the server, navigate to the `biosimspace_demo` directory and you will find the following notebooks there:
 
@@ -25,8 +25,8 @@ Once you have started the server, navigate to the `biosimspace_demo` directory a
 
 ## Training Material
 
-The workshop consists of a series of Jupyter notebooks. These are available on the 
-<a href="https://ccpbiosim.github.io/workshop/events/leeds2019/server.html" target="_blank">workshop jupyter server</a>
+The workshop consists of a series of Jupyter notebooks. These are available on the
+<a href="https://notebook.biosimspace.org" target="_blank">workshop jupyter server</a>
 and can be downloaded from the <a href="https://github.com/ccpbiosim/biosimspace_workshop" target="_blank">GitHub repository</a>.
 
 Once you have started the server, navigate to the `biosimspace_workshop` directory and you will find the
