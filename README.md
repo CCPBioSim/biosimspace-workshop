@@ -14,7 +14,7 @@ BioSimSpace is the new flagship software being produced in partnership with CCP-
 ## Demonstration:
 We will start with a set of demonstrations of what you can do with BioSimSpace. These are a set of Jupyter notebooks. These are available on the
 <a href="https://notebook.biosimspace.org" target="_blank">workshop jupyter server</a>
-and can be downloaded from the <a href="https://github.com/michellabl/BioSimSpace/demo" target="_blank">GitHub repository</a>.
+and can be downloaded from the <a href="https://github.com/michellab/BioSimSpace/tree/devel/demo" target="_blank">GitHub repository</a>.
 
 Once you have started the server, navigate to the `biosimspace_demo` directory and you will find the following notebooks there:
 
