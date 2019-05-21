@@ -13289,7 +13289,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There should now be two additional GROMACS format output files in the working directory.</p>
+<p>There should now be two additional GROMACS format output files in the working directory. (Remember that they won't appear until the cell above finishes running.)</p>
 
 </div>
 </div>
@@ -13438,7 +13438,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That completes this section of the tutorial. We hope you have a better understanding of the aims of the BioSimSpace project and have the knowledge needed to write your own interoperable workflow nodes, which will be needed for the exercies below.</p>
-<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><p>In the following excercises you will several workflow nodes. Make sure to use the built in help if you are unsure of what to do. In particular, the following might be useful:</p>
+<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><p>In the following excercises you will write several workflow nodes. Make sure to use the built in help if you are unsure of what to do. In particular, the following might be useful:</p>
 <ul>
 <li>BioSimSpace packages can query themselves to find out what functionality is available. For example, <code>BSS.IO.fileFormats()</code> returns a list of supported file formats and <code>BSS.Process.packages()</code> returns a list of the supported molecular dynamics packages. These can be useful for setting allowed values for input requirements.</li>
 <li>You can create protocols and processes indirectly using the <code>BSS.Protocol.createProtocol</code> and <code>BSS.Process.createProcess</code> functions. These are useful for generating objects from the input to a node, e.g. a string specifying the chosen protocol.</li>
