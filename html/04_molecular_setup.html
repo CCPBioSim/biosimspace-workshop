@@ -13147,7 +13147,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's load in benzene molecule. As you learned earlier, the <code>BSS.IO.readMolecules</code> function loads molecular information from file and returns a <code>System</code> object. Here we immediately return the list of molecules within the system by calling <code>getMolecules</code>. Since we know that the system contains a single benzene molecule, we simply take the first item in the list.</p>
+<p>Let's load in benzene molecule. As you learned earlier, the <code>BSS.IO.readMolecules</code> function loads molecular information from file and returns a <code>System</code> object. This object can be indexed to extract the molecules that it contains. Since we know that the system contains a single benzene molecule, we simply take the first molecule.</p>
 
 </div>
 </div>
@@ -13157,7 +13157,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">(</span><span class="s2">&quot;input/molecules/benzene.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getMolecules</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">(</span><span class="s2">&quot;input/molecules/benzene.pdb&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13312,7 +13312,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">(</span><span class="s2">&quot;input/molecules/2JJC.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getMolecules</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">BSS</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">readMolecules</span><span class="p">(</span><span class="s2">&quot;input/molecules/2JJC.pdb&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
