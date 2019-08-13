@@ -13168,7 +13168,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(Just like the BioSimSpace <code>System</code>, a <code>Molecule</code> is simply are thin wrapper around the molecule class from <a href="https://github.com/michellab/Sire">Sire</a>. For those that are familiar with Sire, you can get access to the underlying object directly using <code>molecule._getSireMolecule()</code>. This private method is hidden from the user.)</p>
+<p>(Just like the BioSimSpace <code>System</code>, a <code>Molecule</code> is simply are thin wrapper around the molecule class from <a href="https://github.com/michellab/Sire">Sire</a>. For those that are familiar with Sire, you can get access to the underlying object directly using <code>molecule._getSireObject()</code>. This private method is hidden from the user.)</p>
 <p>Now let's paramterise the molecule. We do so by calling the <code>parameterise</code> function from the <code>BSS.Parameters</code> package, passing the molecule and force field name as arguments. Since parameterisation can be slow, the function returns a handle to a process that runs the parameterisation in the background. To get the parameterised molecule from the process we need to call the <code>getMolecule</code> method. This is a blocking operation which waits for the process to finish before grabbing the molecule and returning it.</p>
 
 </div>
@@ -13211,7 +13211,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">_getSireMolecule</span><span class="p">()</span><span class="o">.</span><span class="n">atoms</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">_getSireObject</span><span class="p">()</span><span class="o">.</span><span class="n">atoms</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">),</span> <span class="n">atom</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;LJ&quot;</span><span class="p">))</span>
 </pre></div>
 
@@ -13346,7 +13346,7 @@ Email:&nbsp;&nbsp; lester.hedges@bristol.ac.uk, christopher.woods@bristol.ac.uk<
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">_getSireMolecule</span><span class="p">()</span><span class="o">.</span><span class="n">atoms</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">_getSireObject</span><span class="p">()</span><span class="o">.</span><span class="n">atoms</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">),</span><span class="n">atom</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;LJ&quot;</span><span class="p">))</span>
 </pre></div>
 
