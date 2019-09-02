@@ -16,9 +16,9 @@ BioSimSpace is the new flagship software being produced in partnership with CCP-
 
 The workshop consists of a series of Jupyter notebooks. These are available on the
 <a href="https://notebook.biosimspace.org" target="_blank">workshop jupyter server</a>
-and can be downloaded from the <a href="https://github.com/ccpbiosim/biosimspace_workshop" target="_blank">GitHub repository</a>.
+and can be downloaded from the <a href="https://github.com/ccpbiosim/biosimspace-workshop" target="_blank">GitHub repository</a>.
 
-Once you have started the server, navigate to the `biosimspace_workshop` directory and you will find the
+Once you have started the server, navigate to the `workshops/introduction` directory and you will find the
 notebooks there. These training materials will teach you more about BioSimSpace, including how to write your own BioSimSpace code. The material is split into two parts.
 
 ### Part 1: Molecular Dynamics
