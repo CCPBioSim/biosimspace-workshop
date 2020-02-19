@@ -63,7 +63,7 @@ node.addOutput("minimised", BSS.Gateway.FileSet(help="The minimised molecular sy
 # GROMACS: [kigaki.gro](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.gro), [kigaki.top](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.top)
 # 
 # 
-# When uploading files the name of the current file will replace the `Browse` button. If you need to change the file, simply click on the button again and choose a new file. For `FileSet` requirements, a new `Browse` button will appear whenever an additional file is uploaded.
+# When uploading files the name of the current file(s) will replace the `Upload` button. If you need to change the file, simply click on the button again and choose a new file.
 
 # In[ ]:
 
@@ -73,7 +73,7 @@ node.showControls()
 
 # Once all requirements are set then we can acces the values using the `node.getInput` method. The first time this is called the `node` will automatically validate all of the input and report the user if any errors were found.
 # 
-# We'll now create a molecular system using the input files uploaded by the user. Note that we don't specify the format of the files, since this is automatically determined by BioSimSpace. (BioSimSpace has support for a wide range of formats and can convert between certain formats too.)
+# We'll now create a molecular system using the input files uploaded by the user. Note that we don't specify the format of the files, since this is automatically determined by BioSimSpace. (BioSimSpace has support for a wide range of formats and can convert between many formats too.)
 
 # In[ ]:
 

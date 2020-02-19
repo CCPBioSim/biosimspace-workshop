@@ -67,7 +67,7 @@ node.addOutput("input_files", BSS.Gateway.FileSet(help="A zip file containing th
 # 
 # GROMACS: [kigaki.gro](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.gro), [kigaki.top](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.top)
 # 
-# When uploading files the name of the current file will replace the `Browse` button. If you need to change the file, simply click on the button again and choose a new file. For `FileSet` requirements, a new `Browse` button will appear whenever an additional file is uploaded.
+# When uploading files the name of the current file(s) will replace the `Upload` button. If you need to change the file, simply click on the button again and choose a new file.
 
 # In[ ]:
 
