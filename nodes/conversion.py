@@ -62,6 +62,8 @@ node.addOutput("converted", BSS.Gateway.File(help="The converted molecular syste
 # 
 # GROMACS: [kigaki.gro](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.gro), [kigaki.top](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.top)
 # 
+# NAMD: [alanin.pdb](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.pdb), [alanin.psf](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.psf), [alanin.params](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.params)
+# 
 # When uploading files the name of the current file(s) will replace the `Upload` button. If you need to change the file, simply click on the button again and choose a new file.
 
 # In[ ]:
@@ -86,11 +88,11 @@ system = BSS.IO.readMolecules(node.getInput("files"))
 
 
 # Get the user specified format.
-format = node.getInput("format")
+file_format = node.getInput("format")
 
 # Note that the `saveMolecules` function returns a list containing the names of the files to which it wrote.
 # Since there is only one file, we take the first item from the list.
-node.setOutput("converted", BSS.IO.saveMolecules("converted", system, format)[0])
+node.setOutput("converted", BSS.IO.saveMolecules("converted", system, file_format)[0])
 
 
 # Finally, we validate that the node completed succesfully. This will check that all output requirements are satisfied and that no errors were raised by the user. Any file outputs will be available for the user to download as a compressed archive.
@@ -105,4 +107,5 @@ node.validate()
 
 # Once we are satisfied with our node we can choosed to download it as a regular Python script that can be run from the command-line.
 # 
-# Click on: `File/Download As/Python`
+# In JupyterHub, click on: `File/Download As/Python`\
+# In JupyterLab, click on: `File/Export Notebook As/Export Notebook to Executable Script`

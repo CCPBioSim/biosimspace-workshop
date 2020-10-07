@@ -67,6 +67,8 @@ node.addOutput("input_files", BSS.Gateway.FileSet(help="A zip file containing th
 # 
 # GROMACS: [kigaki.gro](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.gro), [kigaki.top](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/gromacs/kigaki/kigaki.top)
 # 
+# NAMD: [alanin.pdb](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.pdb), [alanin.psf](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.psf), [alanin.params](https://raw.githubusercontent.com/michellab/BioSimSpace/devel/demo/namd/alanin/alanin.params)
+# 
 # When uploading files the name of the current file(s) will replace the `Upload` button. If you need to change the file, simply click on the button again and choose a new file.
 
 # In[ ]:
@@ -115,4 +117,5 @@ node.validate()
 
 # Once we are satisfied with our node we can choosed to download it as a regular Python script that can be run from the command-line.
 # 
-# Click on: `File/Download As/Python`
+# In JupyterHub, click on: `File/Download As/Python`\
+# In JupyterLab, click on: `File/Export Notebook As/Export Notebook to Executable Script`
