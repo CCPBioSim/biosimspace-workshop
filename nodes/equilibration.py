@@ -47,8 +47,8 @@ node.addInput("temperature_end", BSS.Gateway.Temperature(help="The final tempera
                                                          maximum=1000*BSS.Units.Temperature.kelvin,
                                                          default=300*BSS.Units.Temperature.kelvin))
 
-node.addInput("restrain_backbone", BSS.Gateway.Boolean(help="Whether to restrain the backbone.",
-                                                       default=False))
+node.addInput("restraint", BSS.Gateway.Boolean(help="The type of restraint to use.",
+                                                       allowed=["None"] + BSS.Protocol.Equilibration.restraints(), default="None"))
 
 
 # We now need to define the output of the node. In this case we will return a set of files representing the equilibrated molecular system.
@@ -88,7 +88,7 @@ system = BSS.IO.readMolecules(node.getInput("files"))
 # In[ ]:
 
 
-protocol = BSS.Protocol.Equilibration(runtime=node.getInput("runtime"), temperature_start=node.getInput("temperature_start"), temperature_end=node.getInput("temperature_end"), restrain_backbone=node.getInput("restrain_backbone"))
+protocol = BSS.Protocol.Equilibration(runtime=node.getInput("runtime"), temperature_start=node.getInput("temperature_start"), temperature_end=node.getInput("temperature_end"), restraint=node.getInput("restraint"))
 
 
 # Start the MD equilibration.
