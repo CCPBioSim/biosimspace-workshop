@@ -47,7 +47,7 @@ node.addInput("temperature_end", BSS.Gateway.Temperature(help="The final tempera
                                                          maximum=1000*BSS.Units.Temperature.kelvin,
                                                          default=300*BSS.Units.Temperature.kelvin))
 
-node.addInput("restraint", BSS.Gateway.Boolean(help="The type of restraint to use.",
+node.addInput("restraint", BSS.Gateway.String(help="The type of restraint to use.",
                                                        allowed=["None"] + BSS.Protocol.Equilibration.restraints(), default="None"))
 
 
